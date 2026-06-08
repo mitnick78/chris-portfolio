@@ -50,7 +50,8 @@ export function HeroSection() {
             </a>
 
             <a
-              href="#contact"
+              href="mailto:mchristophe7893@gmail.com?subject=Demande de renseignements sur un projet ou une opportunité"
+              //href="#contact"
               className="btn-press inline-flex items-center gap-2 rounded-md border border-edge px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-accent hover:text-accent hover:shadow-sm"
             >
               Me contacter
