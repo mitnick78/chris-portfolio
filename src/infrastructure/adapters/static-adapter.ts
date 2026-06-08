@@ -249,14 +249,8 @@ const SKILLS: Skill[] = [
     proficiency: "advanced",
   },
   {
-    id: "14",
-    name: "Ruby on Rails",
-    category: "backend",
-    proficiency: "advanced",
-  },
-  {
     id: "15",
-    name: "Python / Django",
+    name: "Python / Django / FastApi",
     category: "backend",
     proficiency: "intermediate",
   },
@@ -290,7 +284,7 @@ const SKILLS: Skill[] = [
   // En apprentissage
   {
     id: "20",
-    name: "Data Analysis",
+    name: "Data Engineer",
     category: "learning",
     proficiency: "beginner",
   },
