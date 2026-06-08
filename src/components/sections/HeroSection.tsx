@@ -33,11 +33,6 @@ export function HeroSection() {
             Christophe
           </h1>
 
-          {/* Titre professionnel */}
-          <p className="mb-3 text-lg font-medium text-foreground sm:text-xl">
-            Développeur Full Stack · +15 ans d&apos;expérience
-          </p>
-
           {/* Phrase d'impact */}
           <p className="mb-8 max-w-xl text-base leading-relaxed text-foreground-alt sm:text-lg">
             Du frontend au backend, je transforme des idées en produits digitaux
