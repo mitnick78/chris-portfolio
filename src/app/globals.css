@@ -1,26 +1,378 @@
 @import "tailwindcss";
 
+/* ============================================================
+   Valeurs par défaut des CSS variables (thème minimal).
+   Appliquées au premier rendu, AVANT que JavaScript ne s'exécute.
+   Ensuite, theme-utils.ts les remplace dynamiquement.
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg-primary: #fafafa;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #f4f4f5;
+  --color-accent: #18181b;
+  --color-accent-hover: #27272a;
+  --color-accent-muted: rgba(24, 24, 27, 0.06);
+  --color-text-primary: #09090b;
+  --color-text-secondary: #52525b;
+  --color-text-muted: #a1a1aa;
+  --color-border: #e4e4e7;
+  --color-border-subtle: #f4f4f5;
+
+  --font-heading: "Sora", sans-serif;
+  --font-body: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
+
+  --transition-duration: 200ms;
+  --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* ============================================================
+   @theme — enregistre nos variables comme classes Tailwind.
+   Alias sémantiques : surface (fonds), foreground (textes),
+   accent, edge (bordures).
+   ============================================================ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Fonds */
+  --color-surface: var(--color-bg-primary);
+  --color-surface-alt: var(--color-bg-secondary);
+  --color-surface-muted: var(--color-bg-tertiary);
+
+  /* Accent */
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-accent-muted: var(--color-accent-muted);
+
+  /* Textes */
+  --color-foreground: var(--color-text-primary);
+  --color-foreground-alt: var(--color-text-secondary);
+  --color-foreground-muted: var(--color-text-muted);
+
+  /* Bordures */
+  --color-edge: var(--color-border);
+  --color-edge-subtle: var(--color-border-subtle);
+
+  /* Fonts */
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+
+  /* Radius */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  /* Shadows */
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================================
+   Styles de base
+   ============================================================ */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  transition-property: background-color, color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-easing);
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ============================================================
+   Animations et effets hover premium
+   ============================================================ */
+
+/* Underline animé pour les liens de navigation */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition:
+    width var(--transition-duration) var(--transition-easing),
+    left var(--transition-duration) var(--transition-easing);
+}
+
+.nav-link:hover::after,
+.nav-link[aria-current="true"]::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Effet "press" universel sur les éléments cliquables */
+.btn-press:active {
+  transform: scale(0.96);
+}
+
+/* Carte avec lift au survol */
+.card-lift {
+  transition:
+    transform 300ms var(--transition-easing),
+    box-shadow 300ms var(--transition-easing),
+    border-color 300ms var(--transition-easing);
+}
+
+.card-lift:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+/* Glow subtil pour le thème cinéma */
+.theme-cinema .glow-hover:hover {
+  box-shadow: 0 0 24px rgba(212, 168, 67, 0.12);
+}
+
+/* Badge avec pop au survol */
+.badge-pop {
+  transition:
+    transform 150ms var(--transition-easing),
+    background-color 150ms var(--transition-easing);
+}
+
+.badge-pop:hover {
+  transform: scale(1.08);
+}
+
+/* ============================================================
+   Hero — effets visuels premium
+   ============================================================ */
+
+/* Dégradé sur le texte du nom */
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-accent) 0%,
+    var(--color-text-primary) 50%,
+    var(--color-accent) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animation subtile du dégradé */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.text-gradient-animated {
+  animation: gradient-shift 6s ease-in-out infinite;
+}
+
+/* Thème cinéma : dégradé doré plus marqué */
+.theme-cinema .text-gradient {
+  background: linear-gradient(
+    135deg,
+    #d4a843 0%,
+    #f0ede6 40%,
+    #e4bc5a 60%,
+    #d4a843 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Fond avec grain subtil (noise texture en CSS) */
+.hero-bg {
+  position: relative;
+}
+
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 20% 50%,
+    var(--color-accent-muted) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* ============================================================
+   Thème Cinéma — effets visuels immersifs
+   Tous les styles sont scopés avec .theme-cinema
+   → actifs uniquement quand le thème cinéma est sélectionné
+   ============================================================ */
+
+/* ---- Grain filmé sur toute la page ---- */
+.theme-cinema body {
+  position: relative;
+}
+
+.theme-cinema body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  opacity: 0.04;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+}
+
+/* ---- Vignette — bords sombres comme un cadre de cinéma ---- */
+.theme-cinema body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 49;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+/* ---- Hero : spotlight doré depuis le haut ---- */
+.theme-cinema .hero-bg::before {
+  background:
+    radial-gradient(
+      ellipse at 50% -20%,
+      rgba(212, 168, 67, 0.12) 0%,
+      rgba(212, 168, 67, 0.04) 40%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse at 20% 80%,
+      rgba(212, 168, 67, 0.06) 0%,
+      transparent 50%
+    );
+}
+
+/* ---- Grain plus visible sur le Hero ---- */
+.theme-cinema .hero-bg::after {
+  opacity: 0.06;
+}
+
+/* ---- Cartes : glow doré au survol ---- */
+.theme-cinema .card-lift:hover {
+  border-color: rgba(212, 168, 67, 0.4);
+  box-shadow:
+    0 0 20px rgba(212, 168, 67, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* ---- Bordure dorée subtile sur toutes les cartes ---- */
+.theme-cinema .card-lift {
+  border-color: rgba(212, 168, 67, 0.1);
+}
+
+/* ---- Badges techno : glow doré au survol ---- */
+.theme-cinema .badge-pop:hover {
+  box-shadow: 0 0 12px rgba(212, 168, 67, 0.15);
+}
+
+/* ---- Boutons CTA : ombre dorée ---- */
+.theme-cinema .btn-press:hover {
+  box-shadow: 0 4px 20px rgba(212, 168, 67, 0.2);
+}
+
+/* ---- Liens nav : underline doré ---- */
+.theme-cinema .nav-link::after {
+  background-color: #d4a843;
+}
+
+/* ---- Stats du Hero : chiffres dorés brillants ---- */
+.theme-cinema .font-heading {
+  text-shadow: 0 0 30px rgba(212, 168, 67, 0.15);
+}
+
+/* ---- Header : fond plus sombre et flou renforcé ---- */
+.theme-cinema header {
+  background-color: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(16px);
+}
+
+/* ---- Scrollbar dorée ---- */
+.theme-cinema ::-webkit-scrollbar-thumb {
+  background: rgba(212, 168, 67, 0.3);
+}
+
+.theme-cinema ::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 168, 67, 0.5);
+}
+
+/* ---- Sélection de texte dorée ---- */
+.theme-cinema ::selection {
+  background-color: rgba(212, 168, 67, 0.3);
+  color: #f0ede6;
+}
+
+/* ---- Focus doré ---- */
+.theme-cinema :focus-visible {
+  outline-color: #d4a843;
+}
+
+/* ---- Inputs du formulaire : bordure dorée au focus ---- */
+.theme-cinema input:focus,
+.theme-cinema textarea:focus {
+  border-color: #d4a843;
+  box-shadow: 0 0 0 1px rgba(212, 168, 67, 0.3);
 }
