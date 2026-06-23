@@ -57,6 +57,7 @@ const PROJECTS: Project[] = [
     createdAt: "2018-04-01T00:00:00Z",
     status: "production",
     type: "professional",
+    demoUrl: "https://fr.bazarchic.com/",
   },
   {
     id: "2",
@@ -157,6 +158,33 @@ const PROJECTS: Project[] = [
     createdAt: "2015-10-01T00:00:00Z",
     status: "production",
     type: "professional",
+    demoUrl: "https://www.captaincontrat.com/",
+  },
+  {
+    id: "8",
+    slug: "wise-trip",
+    title: "WiseTrip",
+    description:
+      "Application de planification de voyage intelligente. WiseTrip permet d'organiser ses itinéraires sur une carte interactive, gérer son budget par catégorie de dépenses, et planifier chaque étape jour par jour avec du drag & drop. Authentification sécurisée, hébergement européen et conforme RGPD.",
+    tagline: "Planification de voyage · Carte interactive · Budget",
+    stack: ["Next.js", "Tailwind CSS", "PostgreSQL", "Supabase"],
+    coverImage: "/images/projects/wisetrip.png",
+    screenshots: [],
+    highlights: [
+      "Carte interactive avec ajout d'étapes au clic",
+      "Visualisation de l'itinéraire en temps réel",
+      "Suivi du budget par catégorie de dépenses",
+      "Organisation des étapes par jour en drag & drop",
+      "Gestion multi-voyages simultanés",
+      "Authentification sécurisée via Supabase",
+      "Hébergement européen, conforme RGPD",
+    ],
+    featured: true,
+    category: "fullstack",
+    createdAt: "2026-06-22T00:00:00Z",
+    status: "production",
+    type: "personal",
+    demoUrl: "https://wise-tripfr.vercel.app",
   },
 ];
 

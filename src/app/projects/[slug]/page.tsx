@@ -53,8 +53,8 @@ const PLACEHOLDER_COLORS: Record<string, { bg: string; text: string }> = {
 };
 
 const TYPE_LABELS: Record<string, string> = {
-  professional: "🏢 Projet professionnel",
-  personal: "💡 Projet personnel",
+  professional: "Projet professionnel",
+  personal: "Projet personnel",
 };
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
@@ -106,11 +106,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       {/* En-tête avec badges */}
       <header className="mb-10">
         <div className="mb-4 flex flex-wrap items-center gap-3">
-          {/* Badge type (pro/perso) */}
           <span className="text-sm text-foreground-muted">
             {TYPE_LABELS[project.type]}
           </span>
-          {/* Badge statut */}
           <span
             className={`inline-flex items-center gap-1.5 rounded-full ${status.bg} px-2.5 py-1 text-xs font-medium ${status.text}`}
           >
@@ -133,7 +131,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       {/* Contexte */}
       <section className="mb-10">
         <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent">
-          <span aria-hidden="true">📋</span>
           Contexte
         </h2>
         <p className="leading-relaxed text-foreground-alt">
@@ -145,7 +142,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       {project.highlights && project.highlights.length > 0 && (
         <section className="mb-10">
           <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent">
-            <span aria-hidden="true">🎯</span>
             Réalisations clés
           </h2>
           <ul className="space-y-3">
@@ -168,7 +164,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       {/* Environnement technique */}
       <section className="mb-10">
         <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent">
-          <span aria-hidden="true">🛠</span>
           Environnement technique
         </h2>
         <div className="flex flex-wrap gap-2">
@@ -193,8 +188,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               rel="noopener noreferrer"
               className="btn-press glow-hover inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 text-sm font-medium text-surface transition-all hover:bg-accent-hover hover:shadow-md"
             >
-              Voir la démo
-              <span aria-hidden="true">↗</span>
+              Voir le site
             </a>
           )}
           {project.repoUrl && (
@@ -205,7 +199,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               className="btn-press inline-flex items-center gap-2 rounded-md border border-edge px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-accent hover:text-accent"
             >
               Code source
-              <span aria-hidden="true">↗</span>
             </a>
           )}
         </div>
