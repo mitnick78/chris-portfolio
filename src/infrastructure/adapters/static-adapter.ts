@@ -186,6 +186,37 @@ const PROJECTS: Project[] = [
     type: "personal",
     demoUrl: "https://wise-tripfr.vercel.app",
   },
+  {
+    id: "9",
+    slug: "dash-clone",
+    title: "DashClone",
+    description:
+      "Gestionnaire de mots de passe sous forme d'extension Chrome (Manifest V3), inspiré de Dashlane. DashClone détecte automatiquement les champs email et mot de passe sur les pages web, propose les identifiants enregistrés au clic et les remplit — y compris sur les sites React/Vue. Les mots de passe sont chiffrés au repos via la Web Crypto API et protégés par un mot de passe maître.",
+    tagline: "Extension Chrome · Gestionnaire de mots de passe · Chiffrement",
+    stack: [
+      "JavaScript",
+      "Chrome Extensions MV3",
+      "Web Crypto API",
+      "chrome.storage",
+    ],
+    coverImage: "/images/projects/dashclone.png",
+    screenshots: [],
+    highlights: [
+      "Détection automatique des champs email/mot de passe (heuristiques multiples)",
+      "Support des SPA React/Vue via MutationObserver",
+      "Menu de suggestion positionné au focus d'un champ",
+      "Remplissage compatible frameworks (setter natif + dispatch d'événements)",
+      "Chiffrement AES-GCM des mots de passe, dérivation de clé PBKDF2",
+      "Mot de passe maître jamais stocké, clé en mémoire uniquement",
+      "Architecture service worker / content script / popup par messages",
+    ],
+    featured: true,
+    category: "dev",
+    createdAt: "2026-06-29T00:00:00Z",
+    status: "completed",
+    type: "personal",
+    repoUrl: "https://github.com/mitnick78/dashclone",
+  },
 ];
 
 // ============================================================
