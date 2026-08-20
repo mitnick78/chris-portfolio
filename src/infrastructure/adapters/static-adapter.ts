@@ -217,6 +217,24 @@ const PROJECTS: Project[] = [
     type: "personal",
     repoUrl: "https://github.com/mitnick78/dashclone",
   },
+  {
+    id: "10",
+    slug: "password-lab",
+    title: "PasswordLab",
+    description:
+      "Un générateur et analyseur de mots de passe qui tourne à 100 % dans le navigateur. Aucune donnée envoyée, aucun serveur — tout est calculé localement.",
+    tagline: "Gestionnaire de mots de passe · Chiffrement",
+    stack: ["JavaScript", "Web Crypto API"],
+    coverImage: "/images/projects/password_lab.png",
+    screenshots: [],
+    highlights: [],
+    featured: true,
+    category: "dev",
+    createdAt: "2026-08-20T00:00:00Z",
+    status: "completed",
+    type: "personal",
+    demoUrl: "https://password-lab-nine.vercel.app/",
+  },
 ];
 
 // ============================================================
