@@ -235,6 +235,32 @@ const PROJECTS: Project[] = [
     type: "personal",
     demoUrl: "https://password-lab-nine.vercel.app/",
   },
+  {
+    id: "11",
+    slug: "netscan",
+    title: "NetScan",
+    description:
+      "Scanner de réseau local avec interface de bureau. NetScan découvre et identifie en temps réel les appareils connectés au réseau — IP, adresse MAC et constructeur — en croisant trois techniques : scan ARP actif (rapide), écoute passive du trafic (pour attraper les appareils discrets comme un téléphone en veille) et découverte de services mDNS. La logique réseau, en Python, est totalement découplée de l'interface : le scan tourne dans un thread dédié et pousse ses résultats vers une UI web via un pont pywebview, ce qui garde la fenêtre fluide en permanence.",
+    tagline: "Application de bureau · Scanner réseau · Python",
+    stack: ["Python", "Scapy", "Zeroconf (mDNS)", "pywebview", "HTML/CSS/JS"],
+    coverImage: "/images/projects/netscan.png",
+    screenshots: [],
+    highlights: [
+      "Trois modes de découverte complémentaires : ARP actif, écoute passive, mDNS",
+      "Écoute passive pour détecter les appareils qui ne répondent pas au scan actif",
+      "Scan asynchrone en thread dédié : interface fluide, jamais figée",
+      "Pont Python ↔ JavaScript temps réel via pywebview (résultats poussés en direct)",
+      "Résolution des constructeurs par préfixe MAC, avec cache",
+      "Logique réseau totalement découplée de l'interface (réutilisable, testable)",
+      "Détection automatique du sous-réseau local, résultats dédoublonnés par MAC",
+    ],
+    featured: true,
+    category: "dev",
+    createdAt: "2026-08-24T00:00:00Z",
+    status: "completed",
+    type: "personal",
+    repoUrl: "https://github.com/mitnick78/netscan",
+  },
 ];
 
 // ============================================================
