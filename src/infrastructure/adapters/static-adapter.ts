@@ -259,7 +259,7 @@ const PROJECTS: Project[] = [
     createdAt: "2026-08-24T00:00:00Z",
     status: "completed",
     type: "personal",
-    repoUrl: "https://github.com/mitnick78/netscan",
+    repoUrl: "https://gitlab.com/cybersecurity_cm/netscan",
   },
 ];
 
